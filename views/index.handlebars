@@ -1,0 +1,38 @@
+<header>
+    <h1>EAT DA BURGER!!! <i class="fas fa-hamburger"></i></h1>
+    <span class="fa fa-list-alt" aria-hidden="true"></span>
+</header><!-- /header -->
+
+<div class="wrapper">
+    <div id="create-burger">
+        <form action="/" method="POST">
+            <input id="burger-name" type="text" name="burger_name" placeholder="Create Da Burger">
+            <button id="submit-btn" type="submit">Make Yo Burger</button>
+        </form>
+    </div>
+
+    <section id="burgers-container">
+        <div id="burgers-available">
+            <h2>Eat-Da-Burger!</h2>
+            {{#each burgers}}
+            {{#unless devoured}}
+            <div class="burger">
+                <form class="devour-burger-form" action="/{{id}}?_method=PUT" method="POST">
+                    <button class="eat-btn btn-danger">Devour It</button>
+                </form>
+                <span class="itemNumber">{{id}}</span> {{burger_name}}
+            </div>
+            {{/unless}}
+            {{/each}}
+        </div>
+        <div id="burgers-devoured">
+            <h2>Devoured Burgers</h2>
+            {{#each burgers}}
+            {{#if devoured}}
+            <span class="itemNumber">{{id}}</span>
+            <div class="burger"> {{burger_name}} </div>
+            {{/if}}
+            {{/each}}
+        </div>
+    </section>
+</div>
